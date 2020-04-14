@@ -9,11 +9,11 @@ const forecast = (latitude , longitude, callback) => {
             callback('Unable to connect to weather service')
         }else if(body.error){
             callback('Unable to find forecast. Try another search')
-        }else{
+        }else{            
             callback(undefined, 
                 //response.body.daily.data[0].summary + ' It is currently ' + response.body.currently.temperature + ' degrees out. There is a ' + response.body.currently.precipProbability + '% chance of rain.'
                 //Object Destructuring
-                body.daily.data[0].summary + ' It is currently ' + Math.round(f2c(body.currently.temperature)) + ' degrees out. There is a ' + body.currently.precipProbability + '% chance of rain.'
+                body.daily.data[0].summary + ' It is currently ' +Math.round(f2c(body.currently.temperature)) + ' degree out. The high today is ' +Math.round(f2c(body.daily.data[0].temperatureHigh)) + ' degree with a low of '+ Math.round(f2c(body.daily.data[0].temperatureLow)) + ' degree. There is a ' + body.currently.precipProbability + '% chance of rain.'                
             )
         }
     })
